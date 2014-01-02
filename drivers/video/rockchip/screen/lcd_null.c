@@ -4,25 +4,25 @@
 
 
 /* Base */
-#define SCREEN_TYPE		SCREEN_NULL
+#define SCREEN_TYPE		SCREEN_RGB
 #define LVDS_FORMAT       	LVDS_8BIT_1
-#define OUT_FACE		0
-#define DCLK			0
-#define LCDC_ACLK       	0    //29 lcdc axi DMA ÆµÂÊ
+#define OUT_FACE		OUT_P888
+#define DCLK			71000000
+#define LCDC_ACLK       	500000000    //29 lcdc axi DMA ÆµÂÊ
 
 /* Timing */
-#define H_PW			0
-#define H_BP			0
-#define H_VD			0
-#define H_FP			0
+#define H_PW			1
+#define H_BP			1
+#define H_VD			1280
+#define H_FP			158
 
-#define V_PW			0
-#define V_BP			0
-#define V_VD			0
-#define V_FP			0
+#define V_PW			1
+#define V_BP			1
+#define V_VD		 800
+#define V_FP			21
 
-#define LCD_WIDTH       	0    //need modify
-#define LCD_HEIGHT      	0
+#define LCD_WIDTH       	216    //need modify
+#define LCD_HEIGHT      	135
 
 /* Other */
 #define DCLK_POL		0
