@@ -554,11 +554,11 @@ static struct rk_hdmi_platform_data rk_hdmi_pdata = {
 
 #ifdef CONFIG_FB_ROCKCHIP
 
-#define LCD_CS_PIN         INVALID_GPIO
+#define LCD_CS_PIN         RK30_PIN3_PD4
 #define LCD_CS_VALUE       GPIO_HIGH
 
 #define LCD_EN_PIN         RK30_PIN0_PB0
-#define LCD_EN_VALUE       GPIO_HIGH
+#define LCD_EN_VALUE       GPIO_LOW
 
 static int rk_fb_io_init(struct rk29_fb_setting_info *fb_setting)
 {
