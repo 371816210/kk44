@@ -163,6 +163,7 @@ static struct spi_board_info board_spi_devices[] = {
 #define TOUCH_RESET_PIN   RK30_PIN0_PB6
 #define TOUCH_EN_PIN      NULL
 #define TOUCH_INT_PIN     RK30_PIN1_PB7
+#define IH_OEM_TP_USE_FEICHU_1280X800
 int gslx680_init_platform_hw(void)
 {
 	if(gpio_request(TOUCH_RESET_PIN,NULL) != 0){
@@ -912,7 +913,7 @@ static struct platform_device device_ion = {
  * SDMMC devices,  include the module of SD,MMC,and sdio.noted by xbw at 2012-03-05
 **************************************************************************************************/
 #ifdef CONFIG_SDMMC_RK29
-#include "../mach-rk30/board-rk3168-tb-sdmmc-conifg.c"
+#include "board-rk3188-ds1006h-sdmmc-config.c"
 #include "../plat-rk/rk-sdmmc-ops.c"
 #include "../plat-rk/rk-sdmmc-wifi.c"
 #endif //endif ---#ifdef CONFIG_SDMMC_RK29
