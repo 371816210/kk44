@@ -2459,7 +2459,6 @@ static struct cpufreq_frequency_table dvfs_arm_table_volt_level1[] = {
 	{.frequency = 1008 * 1000,      .index = 1075 * 1000},
 	{.frequency = 1200 * 1000,      .index = 1150 * 1000},
 	{.frequency = 1416 * 1000,      .index = 1250 * 1000},
-	{.frequency = 1608 * 1000,      .index = 1350 * 1000},
 	{.frequency = CPUFREQ_TABLE_END},
 };
 // cube 10'
@@ -2470,7 +2469,6 @@ static struct cpufreq_frequency_table dvfs_arm_table_volt_level2[] = {
 	{.frequency = 1008 * 1000,      .index = 1075 * 1000},
 	{.frequency = 1200 * 1000,      .index = 1200 * 1000},
 	{.frequency = 1416 * 1000,      .index = 1250 * 1000},
-	{.frequency = 1608 * 1000,      .index = 1350 * 1000},
 	{.frequency = CPUFREQ_TABLE_END},
 };
 
@@ -2499,8 +2497,8 @@ static struct cpufreq_frequency_table dvfs_gpu_table_volt_level1[] = {
 /******************************** ddr dvfs frequency volt table **********************************/
 static struct cpufreq_frequency_table dvfs_ddr_table_volt_level0[] = {
 	{.frequency = 200 * 1000 + DDR_FREQ_SUSPEND,    .index = 950 * 1000},
-	{.frequency = 300 * 1000 + DDR_FREQ_VIDEO,      .index = 1000 * 1000},
-	{.frequency = 396 * 1000 + DDR_FREQ_NORMAL,     .index = 1100 * 1000},
+	{.frequency = 300 * 1000 + DDR_FREQ_VIDEO,      .index = 1100 * 1000},
+	{.frequency = 300 * 1000 + DDR_FREQ_NORMAL,     .index = 1100 * 1000},
 	//{.frequency = 528 * 1000 + DDR_FREQ_NORMAL,     .index = 1200 * 1000},
 	{.frequency = CPUFREQ_TABLE_END},
 };
