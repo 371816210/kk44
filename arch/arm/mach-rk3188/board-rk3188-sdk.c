@@ -2361,6 +2361,16 @@ static void __init machine_rk30_board_init(void)
         gpio_direction_output(POWER_ON_PIN, GPIO_HIGH);
 
 
+
+
+  gpio_request(RK30_PIN0_PA3, "vcc50_power");
+	gpio_direction_output(RK30_PIN0_PA3, GPIO_HIGH);
+
+  gpio_request(RK30_PIN3_PA0, "hdmi_en pin");
+  gpio_direction_output(RK30_PIN3_PA0, GPIO_LOW);
+
+
+
 	rk30_i2c_register_board_info();
 	spi_register_board_info(board_spi_devices, ARRAY_SIZE(board_spi_devices));
 	platform_add_devices(devices, ARRAY_SIZE(devices));
