@@ -159,6 +159,51 @@ struct goodix_platform_data goodix_info = {
 static struct spi_board_info board_spi_devices[] = {
 };
 
+
+
+
+
+
+
+#if defined(CONFIG_TOUCHSCREEN_GSLX680)
+#define TOUCH_RESET_PIN   RK30_PIN0_PB6
+#define TOUCH_EN_PIN      NULL
+#define TOUCH_INT_PIN     RK30_PIN1_PB7
+#define IH_OEM_TP_USE_FEICHU_1280X800
+int gslx680_init_platform_hw(void)
+{
+	if(gpio_request(TOUCH_RESET_PIN,NULL) != 0){
+		gpio_free(TOUCH_RESET_PIN);
+		printk("gslx680_init_platform_hw gpio_request error\n");
+		return -EIO;
+	}
+	if(gpio_request(TOUCH_INT_PIN,NULL) != 0){
+		gpio_free(TOUCH_INT_PIN);
+		printk("gslx680_init_platform_hw  gpio_request error\n");
+		return -EIO;
+	}
+	gpio_direction_output(TOUCH_RESET_PIN, GPIO_HIGH);
+	mdelay(10);
+	gpio_set_value(TOUCH_RESET_PIN,GPIO_LOW);
+	mdelay(10);
+	gpio_set_value(TOUCH_RESET_PIN,GPIO_HIGH);
+	msleep(300);
+	return 0;
+
+}
+
+struct ts_hw_data gslx680_info = {
+	.reset_gpio = TOUCH_RESET_PIN,
+	.touch_en_gpio = TOUCH_INT_PIN,
+	.init_platform_hw = gslx680_init_platform_hw,
+};
+#endif
+
+
+
+
+
+
 /***********************************************************
 *	rk30  backlight
 ************************************************************/
@@ -490,11 +535,11 @@ static struct sensor_platform_data cm3217_info = {
 
 #ifdef CONFIG_FB_ROCKCHIP
 
-#define LCD_CS_PIN         INVALID_GPIO
+#define LCD_CS_PIN         RK30_PIN3_PD4
 #define LCD_CS_VALUE       GPIO_HIGH
 
 #define LCD_EN_PIN         RK30_PIN0_PB0
-#define LCD_EN_VALUE       GPIO_HIGH
+#define LCD_EN_VALUE       GPIO_LOW
 
 static int rk_fb_io_init(struct rk29_fb_setting_info *fb_setting)
 {
@@ -2374,6 +2419,17 @@ static struct i2c_board_info __initdata i2c2_info[] = {
 		.platform_data = &goodix_info,
 	},
 #endif
+
+#if defined(CONFIG_TOUCHSCREEN_GSLX680)
+	{    
+		.type           = "gslX680",
+		.addr           = 0x40,
+		.flags          = 0, 
+		.irq            = TOUCH_INT_PIN,
+		.platform_data  = &gslx680_info,
+	}, 
+#endif
+
 #if defined (CONFIG_LS_CM3217)
 	{
 		.type          = "lightsensor",
