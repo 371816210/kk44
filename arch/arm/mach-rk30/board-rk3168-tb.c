@@ -976,6 +976,11 @@ static struct platform_device device_ion = {
  * SDMMC devices,  include the module of SD,MMC,and sdio.noted by xbw at 2012-03-05
 **************************************************************************************************/
 #ifdef CONFIG_SDMMC_RK29
+    #define RK30SDK_WIFI_GPIO_POWER_N               RK30_PIN3_PD0                 
+    #define RK30SDK_WIFI_GPIO_POWER_ENABLE_VALUE    GPIO_HIGH
+
+    #define RK30SDK_WIFI_GPIO_RESET_N               RK30_PIN2_PA7
+    #define RK30SDK_WIFI_GPIO_RESET_ENABLE_VALUE    GPIO_HIGH 
 #include "board-rk3168-tb-sdmmc-conifg.c"
 #include "../plat-rk/rk-sdmmc-ops.c"
 #include "../plat-rk/rk-sdmmc-wifi.c"
@@ -1370,7 +1375,7 @@ static struct rfkill_rk_platform_data rfkill_rk_platdata = {
 
     .wake_host_irq      = { // BT_HOST_WAKE, for bt wakeup host when it is in deep sleep
         .gpio           = {
-            .io         = RK30_PIN0_PA5, // set io to INVALID_GPIO for disable it
+            .io         = RK30_PIN3_PC7, // set io to INVALID_GPIO for disable it
             .enable     = GPIO_LOW,      // set GPIO_LOW for falling, set 0 for rising
             .iomux      = {
                 .name   = NULL,
