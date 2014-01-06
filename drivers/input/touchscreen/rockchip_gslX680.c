@@ -625,12 +625,9 @@ static void report_data(struct gsl_ts *ts, u16 x, u16 y, u8 pressure, u8 id)
 		return;
 	}
 
-#ifdef IH_OEM_TP_DIAGONAL
-    //do nothing, 换了.c文件后，为了与4.1的kernel的tp h文件兼容，这里不处理。
-#else
-	x = SCREEN_MAX_X-x-1;
-	y = SCREEN_MAX_Y-y-1;
-#endif
+
+	//x = SCREEN_MAX_X-x;
+	//y = SCREEN_MAX_Y-y;
 	
 #ifdef REPORT_DATA_ANDROID_4_0
 	input_mt_slot(ts->input, id);		
