@@ -1251,34 +1251,28 @@ static struct platform_device rk30_device_adc_battery = {
    name: chen gan; tel:13416876079; E-mail: ben.chen@cellwise-semi.com
  */
 static u8 config_info[SIZE_BATINFO] = {
-	0x15, 0x42, 0x60, 0x59, 0x52,
-	0x58, 0x4D, 0x48, 0x48, 0x44,
-	0x44, 0x46, 0x49, 0x48, 0x32,
-	0x24, 0x20, 0x17, 0x13, 0x0F,
-	0x19, 0x3E, 0x51, 0x45, 0x08,
-	0x76, 0x0B, 0x85, 0x0E, 0x1C,
-	0x2E, 0x3E, 0x4D, 0x52, 0x52,
-	0x57, 0x3D, 0x1B, 0x6A, 0x2D,
-	0x25, 0x43, 0x52, 0x87, 0x8F,
+	0x15, 0x4C, 0x55, 0x54, 0x4D,
+	0x4F, 0x53, 0x4B, 0x47, 0x48,
+	0x48, 0x45, 0x42, 0x41, 0x3B,
+	0x34, 0x2E, 0x2A, 0x21, 0x1E,
+	0x1F, 0x3D, 0x4A, 0x46, 0x31,
+	0x1C, 0x0C, 0xCD, 0x25, 0x45,
+	0x52, 0x8E, 0x84, 0x7E, 0x72,
+	0x61, 0x40, 0x1B, 0x20, 0x36,
+	0x00, 0x22, 0x52, 0x87, 0x8F,
 	0x91, 0x94, 0x52, 0x82, 0x8C,
-	0x92, 0x96, 0xFF, 0x7B, 0xBB,
+	0x92, 0x96, 0x08, 0xBE, 0xF5,
 	0xCB, 0x2F, 0x7D, 0x72, 0xA5,
-	0xB5, 0xC1, 0x46, 0xAE
+	0xB5, 0xC1, 0x30, 0x09 
 };
 
 static struct cw_bat_platform_data cw_bat_platdata = {
-	.dc_det_pin      = RK30_PIN0_PB2,
-        .dc_det_level    = GPIO_LOW,
-
-        .bat_low_pin    = RK30_PIN0_PB1,
-        .bat_low_level  = GPIO_LOW,   
-        .chg_ok_pin   = INVALID_GPIO,
-        .chg_ok_level = GPIO_HIGH,
-
-        .is_usb_charge = 0,
-        .chg_mode_sel_pin = INVALID_GPIO,
-        .chg_mode_sel_level = GPIO_HIGH,
-
+	.dc_det_pin    = RK30_PIN0_PB2,
+        .bat_low_pin   = RK30_PIN0_PB1,
+        .chg_ok_pin    = RK30_PIN0_PA6,
+        .dc_det_level  = GPIO_LOW,
+        .bat_low_level = GPIO_LOW,   
+        .chg_ok_level  = GPIO_HIGH,
         .cw_bat_config_info     = config_info,
 
 };
@@ -1674,6 +1668,14 @@ static struct i2c_board_info __initdata i2c0_info[] = {
 		.addr          = 0x40,
 		.flags         = 0,
 	},
+#endif
+#if defined (CONFIG_CW2015_BATTERY)
+        {
+                .type           = "cw201x",
+                .addr           = 0x62,
+                .flags          = 0,
+                .platform_data  = &cw_bat_platdata,
+        },
 #endif
 #if defined (CONFIG_SND_SOC_RT5631)
         {
@@ -2300,14 +2302,7 @@ static struct i2c_board_info __initdata i2c1_info[] = {
 		.flags                  = 0,
 		.irq            = RK30_PIN1_PA4,
 	},
-#if defined (CONFIG_CW2015_BATTERY)
-        {
-                .type           = "cw201x",
-                .addr           = 0x62,
-                .flags          = 0,
-                .platform_data  = &cw_bat_platdata,
-        },
-#endif
+
 #endif
 
 };
